@@ -39,7 +39,7 @@ def main():
     selected_container_name = st.selectbox(
         "용기를 골라주세요 😊",
         container_names,
-        index=1,  # 기본값: 더블컵
+        index=1,
     )
 
     selected_container = containers[selected_container_name]
@@ -69,8 +69,8 @@ def main():
         "사랑에빠진딸기",
         "레인보우샤베트",
         "아몬드봉봉",
-        "쿠키앤크림",
-    
+        "쿠키앤크림"
+    ]
 
     selected_flavors = st.multiselect(
         f"원하는 맛을 골라주세요 (최대 {max_scoops}가지 이하) 😋",
@@ -106,38 +106,9 @@ def main():
         horizontal=True,
     )
 
-    # 가격 계산 (용기 기준 고정)
     total_price = base_price
 
     st.subheader("🧾 주문 요약")
     with st.container():
         st.markdown(
             f"""
-            - 이용 방식: **{eat_type}**  
-            - 용기: **{selected_container_name}**  
-            - 선택한 맛(이하 기준): **{', '.join(valid_flavors) if valid_flavors else '아직 선택 안 하셨어요'}**  
-            - 결제 방법: **{payment_method}**  
-            """
-        )
-        st.markdown(f"### 💰 결제 금액: **{total_price:,}원**")
-
-    # 주문 완료 버튼
-    st.divider()
-    if st.button("✅ 이대로 주문할게요!"):
-        if len(valid_flavors) == 0:
-            st.error("아이스크림 맛을 최소 1가지 이상 선택해 주세요 🍦")
-        else:
-            if payment_method == "기프티콘 결제 🎁":
-                st.success(
-                    "🎁 기프티콘 결제를 선택하셨습니다!\n\n"
-                    "직원에게 기프티콘 바코드를 보여주세요 💕"
-                )
-            else:
-                st.success(
-                    "주문이 완료되었습니다! 🥳\n\n"
-                    "잠시만 기다려 주세요, 정성껏 준비해 드릴게요 💕"
-                )
-
-
-if __name__ == "__main__":
-    main()
